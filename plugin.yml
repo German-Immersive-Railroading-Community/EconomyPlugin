@@ -10,8 +10,18 @@ commands:
     usage: /<command>
     permission: economy.command.money
     aliases: [bank]
+  profile:
+    description: Open the bank menu
+    usage: /<command>
+    permission: economy.command.profile
 
 permissions:
   economy.command.money:
     description: Open the bank menu
     default: true
+  economy.command.profile:
+    description: Open the profile menu
+    default: true
+  economy.command.profile.inspect:
+    description: Open the profile menu of an other player
+    default: op

@@ -2,6 +2,7 @@ package economy.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +47,29 @@ public class Config {
 		if(!doesPlayerExist(player)) {
 			config.set("Player." + player.getUniqueId() + ".name", player.getName());
 			config.set("Player." + player.getUniqueId() + ".balance", config.getLong("Bank.basicincome"));
+			LocalDateTime date = LocalDateTime.now();
+			setPlayerDate(player, date.getYear(), date.getMonthValue() , date.getDayOfMonth());
 		}
 		config.set("Player." + player.getUniqueId() + ".name", player.getName());
 		saveConfig();
+	}
+	
+	public static void setPlayerDate(Player player, int year, int month, int day) {
+		config.set("Player." + player.getUniqueId() + ".date.year", year);
+		config.set("Player." + player.getUniqueId() + ".date.month", month);
+		config.set("Player." + player.getUniqueId() + ".date.day", day);
+	}
+	
+	public static int getPlayerYear(Player player) {
+		return config.getInt("Player." + player.getUniqueId() + ".date.year");
+	}
+	
+	public static int getPlayerMonth(Player player) {
+		return config.getInt("Player." + player.getUniqueId() + ".date.month");
+	}
+	
+	public static int getPlayerDay(Player player) {
+		return config.getInt("Player." + player.getUniqueId() + ".date.day");
 	}
 	
 	public static boolean doesPlayerExist(Player player) {

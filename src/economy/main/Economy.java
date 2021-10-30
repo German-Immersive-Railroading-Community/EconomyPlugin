@@ -3,6 +3,7 @@ package economy.main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import economy.commands.MoneyCommand;
+import economy.commands.ProfileCommand;
 import economy.config.Config;
 import economy.events.PlayerJoinListener;
 import serversystem.handler.InventoryHandler;
@@ -18,6 +19,7 @@ public class Economy extends JavaPlugin {
 	
 	private void registerCommands() {
 		getCommand("money").setExecutor(new MoneyCommand());
+		getCommand("profile").setExecutor(new ProfileCommand());
 	}
 	
 	public void registerEvents() {
