@@ -1,0 +1,17 @@
+main: economy.main.Economy
+name: Economy
+version: "0.1"
+author: Der_Zauberer
+api-version: 1.12
+
+commands:
+  money:
+    description: Open the bank menu
+    usage: /<command>
+    permission: economy.command.money
+    aliases: [bank]
+
+permissions:
+  economy.command.money:
+    description: Open the bank menu
+    default: true
