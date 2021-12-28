@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import economy.config.Config;
+import economy.objects.EconomyPlayer;
 import serversystem.utilities.PlayerInventory;
 
 public class ProfileMenu extends PlayerInventory {
@@ -27,7 +27,7 @@ public class ProfileMenu extends PlayerInventory {
 		string.add(ChatColor.WHITE + player.getName());
 		string.add("");
 		string.add(ChatColor.DARK_GRAY + "Member since");
-		string.add(ChatColor.WHITE + "" + Config.getPlayerYear(player) + "." + Config.getPlayerMonth(player) + "." + Config.getPlayerDay(player));
+		string.add(ChatColor.WHITE + "" + EconomyPlayer.getPlayerByBucketPlayer(player).getDate());
 		string.add("");
 		return string;
 	}

@@ -6,6 +6,7 @@ import economy.commands.MoneyCommand;
 import economy.commands.ProfileCommand;
 import economy.config.Config;
 import economy.events.PlayerJoinListener;
+import economy.events.PlayerQuitListener;
 import serversystem.handler.InventoryHandler;
 
 public class Economy extends JavaPlugin {
@@ -24,6 +25,7 @@ public class Economy extends JavaPlugin {
 	
 	public void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
 		Bukkit.getPluginManager().registerEvents(new InventoryHandler(), this);
 	}
 
