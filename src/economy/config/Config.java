@@ -10,6 +10,9 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import economy.objects.EconomyLicense;
+import economy.objects.EconomyLicense.LicenseType;
 import economy.objects.EconomyPlayer;
 
 public class Config {
@@ -22,6 +25,7 @@ public class Config {
 			config.set("Bank.basicincome", 0);
 		}
 		createEconomyPlayers();
+		createLicenses();
 		saveConfig();
 	}
 	
@@ -44,6 +48,15 @@ public class Config {
 	
 	public static long getBasicIncome() {
 		return config.getLong("Bank.basicincome");
+	}
+	
+	public static void setLicenseCounter(int counter) {
+		config.set("License.counter", counter);
+		saveConfig();
+	}
+	
+	public static int getLicenseCounter() {
+		return config.getInt("License.counter");
 	}
 	
 	public static void setPlayerData(EconomyPlayer player) {
@@ -126,6 +139,48 @@ public class Config {
 			getSection("Player", false).forEach((key) -> players.add(key));
 		}
 		return players;
+	}
+	
+	public static void setLicense(EconomyLicense license) {
+		String path = "License." + license.getId() + ".";
+		config.set(path + "player", license.getPlayer());
+		config.set(path + "type", license.getType().toString());
+		config.set(path + "validSince", license.getValidSince());
+		saveConfig();
+	}
+	
+	public static EconomyLicense getLicense(int id) {
+		String path = "License." + id + ".";
+		String player = config.getString(path + "player");
+		LicenseType type = LicenseType.valueOf(config.getString(path + "type"));
+		String validSince = config.getString(path + "validSince");
+		return new EconomyLicense(id, player, type, validSince);
+	}
+	
+	public static void removeLicense(int id) {
+		config.set("License." + id, null);
+	}
+	
+	public static void createLicenses() {
+		for (String id : getLicenses()) {
+			String path = "License." + id + ".";
+			String player = config.getString(path + "player");
+			LicenseType type = LicenseType.valueOf(config.getString(path + "type"));
+			String validSince = config.getString(path + "validSince");
+			EconomyPlayer.getPlayerByUUID(player).addLicense(new EconomyLicense(Integer.parseInt(id), player, type, validSince));
+		}
+	}
+	
+	public static List<String> getLicenses() {
+		List<String> licenses = new ArrayList<>();
+		if (getSection("License", false) != null) {
+			for (String key : getSection("License", false)) {
+				if (!key.equals("counter")) {
+					licenses.add(key);
+				}
+			}
+		}
+		return licenses;
 	}
 	
 	public static void saveConfig() {

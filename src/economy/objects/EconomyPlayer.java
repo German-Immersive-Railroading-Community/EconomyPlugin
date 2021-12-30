@@ -17,6 +17,7 @@ public class EconomyPlayer {
 	private boolean online;
 	private long balance;
 	private String date;
+	private ArrayList<EconomyLicense> licenses = new ArrayList<>();
 	
 	public EconomyPlayer(Player player) {
 		players.add(this);
@@ -85,6 +86,18 @@ public class EconomyPlayer {
 	
 	public String getDate() {
 		return date;
+	}
+	
+	public void addLicense(EconomyLicense license) {
+		licenses.add(license);
+	}
+	
+	public void removeLicense(EconomyLicense license) {
+		licenses.remove(license);
+	}
+	
+	public ArrayList<EconomyLicense> getLicenses() {
+		return licenses;
 	}
 	
 	public static EconomyPlayer getPlayerByBucketPlayer(Player player) {

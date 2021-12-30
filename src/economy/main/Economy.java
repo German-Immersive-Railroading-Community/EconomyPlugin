@@ -16,6 +16,7 @@ public class Economy extends JavaPlugin {
 		new Config();
 		registerCommands();
 		registerEvents();
+		//EconomyPlayer.getPlayerByName("Der_Zauberer").addLicense(new EconomyLicense(Bukkit.getPlayer("Der_Zauberer").getUniqueId().toString(), LicenseType.TICKET, "2021.12.30"));
 	}
 	
 	private void registerCommands() {
