@@ -48,7 +48,7 @@
       <artifactId>spigot-api</artifactId>
       <version>1.12.2-R0.1-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>C:\Program Files\JavaLibraries\spigot1.12.2.jar</systemPath>
+      <systemPath>D:\Server\girc\spigot.jar</systemPath>
     </dependency>
   </dependencies>
 </project>
