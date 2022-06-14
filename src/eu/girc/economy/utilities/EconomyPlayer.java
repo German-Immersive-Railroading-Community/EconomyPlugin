@@ -1,15 +1,12 @@
-package economy.objects;
+package eu.girc.economy.utilities;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
-
-import economy.config.Config;
+import eu.girc.economy.config.Config;
 
 public class EconomyPlayer {
-	
-	public static ArrayList<EconomyPlayer> players = new ArrayList<>();
 	
 	private Player player;
 	private String name;
@@ -19,6 +16,8 @@ public class EconomyPlayer {
 	private String date;
 	private ArrayList<EconomyLicense> licenses = new ArrayList<>();
 	
+	public static final ArrayList<EconomyPlayer> players = new ArrayList<>();
+	
 	public EconomyPlayer(Player player) {
 		players.add(this);
 		setOnline(player);
@@ -26,6 +25,7 @@ public class EconomyPlayer {
 	
 	public EconomyPlayer(String name, UUID uuid) {
 		players.add(this);
+		this.player = null;
 		this.name = name;
 		this.uuid = uuid;
 		setOffline();

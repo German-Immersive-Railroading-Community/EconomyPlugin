@@ -1,4 +1,4 @@
-package economy.commands;
+package eu.girc.economy.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,16 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import economy.config.Config;
-import economy.menus.ProfileMenu;
-import serversystem.utilities.CommandAssistant;
+
+import eu.girc.economy.config.Config;
+import eu.girc.economy.menus.ProfileMenu;
+import eu.girc.economy.utilities.CommandAssistant;
 
 public class ProfileCommand implements CommandExecutor, TabCompleter {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		CommandAssistant assistant = new CommandAssistant(sender);
+		final CommandAssistant assistant = new CommandAssistant(sender);
 		if(assistant.isSenderInstanceOfPlayer()) {
 			if(args.length == 0) {
 				new ProfileMenu((Player)sender);

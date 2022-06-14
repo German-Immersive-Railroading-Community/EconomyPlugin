@@ -1,13 +1,13 @@
-package economy.main;
+package eu.girc.economy.main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import economy.commands.MoneyCommand;
-import economy.commands.ProfileCommand;
-import economy.config.Config;
-import economy.events.PlayerJoinListener;
-import economy.events.PlayerQuitListener;
-import serversystem.handler.InventoryHandler;
+import eu.girc.economy.commands.MoneyCommand;
+import eu.girc.economy.commands.ProfileCommand;
+import eu.girc.economy.config.Config;
+import eu.girc.economy.events.PlayerJoinListener;
+import eu.girc.economy.utilities.ExtendedItemStack;
+import eu.girc.economy.utilities.PlayerInventory;
 
 public class Economy extends JavaPlugin {
 	
@@ -26,8 +26,8 @@ public class Economy extends JavaPlugin {
 	
 	public void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
-		Bukkit.getPluginManager().registerEvents(new InventoryHandler(), this);
+		Bukkit.getPluginManager().registerEvents(ExtendedItemStack.getInstance(), this);
+		Bukkit.getPluginManager().registerEvents(PlayerInventory.getInstance(), this);
 	}
 
 }

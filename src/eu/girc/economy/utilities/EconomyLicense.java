@@ -1,6 +1,6 @@
-package economy.objects;
+package eu.girc.economy.utilities;
 
-import economy.config.Config;
+import eu.girc.economy.config.Config;
 
 public class EconomyLicense {
 	
@@ -8,10 +8,10 @@ public class EconomyLicense {
 	
 	private static int counter = Config.getLicenseCounter();
 	
-	private int id;
-	private String player;
-	private LicenseType type;
-	private String validSince;
+	private final int id;
+	private final String player;
+	private final LicenseType type;
+	private final String validSince;
 	
 	public EconomyLicense(int id, String player, LicenseType type, String validSince) {
 		this.id = id;

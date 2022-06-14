@@ -1,4 +1,4 @@
-package economy.menus;
+package eu.girc.economy.menus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,17 +7,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import economy.objects.EconomyPlayer;
-import serversystem.utilities.PlayerInventory;
+import eu.girc.economy.utilities.EconomyPlayer;
+import eu.girc.economy.utilities.ExtendedItemStack;
+import eu.girc.economy.utilities.PlayerInventory;
 
 public class BankMenu extends PlayerInventory {
 
 	public BankMenu(Player player) {
-		super(player, 27, "Bank");
-		setItemOption(ItemOption.FIXED);
-		setItem(10, createItem(ChatColor.GOLD + "Balance: " + EconomyPlayer.getPlayerByBucketPlayer(player).getBalance() + " coins", Material.GOLD_BLOCK));
-		setItem(12, createItem(ChatColor.GOLD + "Stocks", Material.PAPER, getStocksLore()));
-		setItem(16, createItem(ChatColor.GOLD + "" + ChatColor.BOLD + "Info", Material.BOOK, getInfoLore()));
+		super(player, 3, "Bank");
+		setFixed(true);
+		setItem(10, new ExtendedItemStack(ChatColor.GOLD + "Balance: " + EconomyPlayer.getPlayerByBucketPlayer(player).getBalance() + " coins", Material.GOLD_BLOCK));
+		setItem(12, new ExtendedItemStack(ChatColor.GOLD + "Stocks", Material.PAPER).setLore(getStocksLore()));
+		setItem(16, new ExtendedItemStack(ChatColor.GOLD + "" + ChatColor.BOLD + "Info", Material.BOOK).setLore(getInfoLore()));
 		open();
 	}
 	

@@ -1,4 +1,4 @@
-package economy.menus;
+package eu.girc.economy.menus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +6,20 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import economy.objects.EconomyLicense;
-import economy.objects.EconomyPlayer;
-import serversystem.utilities.PlayerInventory;
+import eu.girc.economy.utilities.EconomyLicense;
+import eu.girc.economy.utilities.EconomyPlayer;
+import eu.girc.economy.utilities.ExtendedItemStack;
+import eu.girc.economy.utilities.PlayerInventory;
 
 public class ProfileMenu extends PlayerInventory {
 
 	public ProfileMenu(Player player) {
-		super(player, 18, "Profile");
-		setItemOption(ItemOption.FIXED);
-		setItem(0, createItem(ChatColor.BOLD + "Passport", Material.BOOK, getInfoLore(player)));
+		super(player, 2, "Profile");
+		setFixed(true);
+		setItem(0, new ExtendedItemStack(ChatColor.BOLD + "Passport", Material.BOOK).setLore(getInfoLore(player)));
 		ArrayList<EconomyLicense> licenses = EconomyPlayer.getPlayerByBucketPlayer(player).getLicenses();
 		for (int i = 0; i < licenses.size(); i++) {
-			setItem(i + 1, createItem(ChatColor.BOLD + licenses.get(i).getType().toString().replace('_', ' '), Material.PAPER, getLicenseLore(licenses.get(i))));
+			setItem(i + 1, new ExtendedItemStack(ChatColor.BOLD + licenses.get(i).getType().toString().replace('_', ' '), Material.PAPER).setLore(getLicenseLore(licenses.get(i))));
 		}
 		open();
 	}

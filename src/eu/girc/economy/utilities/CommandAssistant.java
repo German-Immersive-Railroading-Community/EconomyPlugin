@@ -1,4 +1,4 @@
-package serversystem.utilities;
+package eu.girc.economy.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import serversystem.handler.ChatHandler;
-import serversystem.handler.ChatHandler.ErrorMessage;
+
+import eu.girc.economy.utilities.ChatUtil.ErrorMessage;
 
 public class CommandAssistant {
 	
@@ -23,7 +23,7 @@ public class CommandAssistant {
 		if(sender instanceof Player) {
 			return true;
 		}
-		ChatHandler.sendServerErrorMessage(sender, ErrorMessage.ONLYPLAYER);
+		ChatUtil.sendServerErrorMessage(sender, ErrorMessage.ONLYPLAYER);
 		return false;	
 	}
 	
@@ -32,9 +32,9 @@ public class CommandAssistant {
 			return true;
 		}
 		if(notenougharguments) {
-			ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOTENOUGHARGUMENTS);
+			ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOTENOUGHARGUMENTS);
 		} else {
-			ChatHandler.sendServerErrorMessage(sender, ErrorMessage.ONLYPLAYER);
+			ChatUtil.sendServerErrorMessage(sender, ErrorMessage.ONLYPLAYER);
 		}
 		return false;
 	}
@@ -43,7 +43,7 @@ public class CommandAssistant {
 		if(!(sender instanceof Player)) {
 			return true;
 		} 
-		ChatHandler.sendServerErrorMessage(sender, ErrorMessage.ONLYCONSOLE);
+		ChatUtil.sendServerErrorMessage(sender, ErrorMessage.ONLYCONSOLE);
 		return false;
 	}
 	
@@ -52,7 +52,7 @@ public class CommandAssistant {
 			Integer.parseInt(value);
 			return true;
 		} catch (NumberFormatException exception) {
-			ChatHandler.sendServerErrorMessage(sender, "The value " + value + " is not a valid number!");
+			ChatUtil.sendServerErrorMessage(sender, "The value " + value + " is not a valid number!");
 			return false;
 		}
 	}
@@ -62,7 +62,7 @@ public class CommandAssistant {
 			Integer.parseInt(value);
 			return true;
 		} catch (NumberFormatException exception) {
-			ChatHandler.sendServerErrorMessage(sender, "The value " + value + " is not a valid number!");
+			ChatUtil.sendServerErrorMessage(sender, "The value " + value + " is not a valid number!");
 			return false;
 		}
 	}
@@ -71,7 +71,7 @@ public class CommandAssistant {
 		if(Bukkit.getWorld(world) != null) {
 			return true;
 		}
-		ChatHandler.sendServerErrorMessage(sender, "The world " + world + " does not exist!");
+		ChatUtil.sendServerErrorMessage(sender, "The world " + world + " does not exist!");
 		return false;
 	}
 	
@@ -79,7 +79,7 @@ public class CommandAssistant {
 		if(Bukkit.getPlayer(player) != null) {
 			return true;
 		}
-		ChatHandler.sendServerErrorMessage(sender, "The player " + player + " is not online!");
+		ChatUtil.sendServerErrorMessage(sender, "The player " + player + " is not online!");
 		return false;
 	}
 	
@@ -87,7 +87,7 @@ public class CommandAssistant {
 		if(player.hasPermission(permission)) {
 			return true;
 		} else {
-			ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
+			ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
 			return false;
 		}
 	}
@@ -96,7 +96,7 @@ public class CommandAssistant {
 		if(sender.hasPermission(permission)) {
 			return true;
 		} else {
-			ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
+			ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
 			return false;
 		}
 	}
@@ -105,7 +105,7 @@ public class CommandAssistant {
 		if(sender.hasPermission(permission)) {
 			return true;
 		} 
-		ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
+		ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
 		return false;
 	}
 	
@@ -113,7 +113,7 @@ public class CommandAssistant {
 		if(!(sender instanceof Player) || sender.hasPermission(permission)) {
 			return true;
 		} 
-		ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
+		ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOPERMISSION);
 		return false;
 	}
 	
@@ -123,7 +123,7 @@ public class CommandAssistant {
 				return true;
 			}
 		}
-		ChatHandler.sendServerErrorMessage(sender, gamemode + " is not a valid gamemode!");
+		ChatUtil.sendServerErrorMessage(sender, gamemode + " is not a valid gamemode!");
 		return false;
 	}
 	
@@ -136,7 +136,7 @@ public class CommandAssistant {
 				return true;
 			}
 		}
-		ChatHandler.sendServerErrorMessage(sender, material + " is not a valid material!");
+		ChatUtil.sendServerErrorMessage(sender, material + " is not a valid material!");
 		return false;
 	}
 	
@@ -144,7 +144,7 @@ public class CommandAssistant {
 		if(bool.equalsIgnoreCase("true") || bool.equalsIgnoreCase("false")) {
 			return true;
 		}
-		ChatHandler.sendServerErrorMessage(sender, bool + " is not a valid boolean!");
+		ChatUtil.sendServerErrorMessage(sender, bool + " is not a valid boolean!");
 		return false;
 	}
 	
@@ -152,7 +152,7 @@ public class CommandAssistant {
 		if(args.length >= min) {
 			return true;
 		}
-		ChatHandler.sendServerErrorMessage(sender, ErrorMessage.NOTENOUGHARGUMENTS);
+		ChatUtil.sendServerErrorMessage(sender, ErrorMessage.NOTENOUGHARGUMENTS);
 		return false;
 	}
 	

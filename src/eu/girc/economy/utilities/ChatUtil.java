@@ -1,11 +1,11 @@
-package serversystem.handler;
+package eu.girc.economy.utilities;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-public class ChatHandler implements Listener {
+public class ChatUtil implements Listener {
 	
 	private static ChatColor messagecolor = ChatColor.GOLD;
 	private static ChatColor errorcolor = ChatColor.RED;
@@ -66,9 +66,7 @@ public class ChatHandler implements Listener {
 	
 	public static Material parseMaterial(String material) {
 		try {
-			if(material.startsWith("minecraft:")) {
-				material = material.substring(10);
-			}
+			if(material.startsWith("minecraft:")) material = material.substring(10);
 			material = material.toUpperCase();
 			return Material.valueOf(material);
 		} catch (IllegalArgumentException exception) {
@@ -78,10 +76,7 @@ public class ChatHandler implements Listener {
 	}
 	
 	public static Boolean parseBoolean(String bool) {
-		if(bool.equalsIgnoreCase("true")) {
-			return true;
-		}
-		return false;
+		return bool.equalsIgnoreCase("true");
 	}
 
 }
