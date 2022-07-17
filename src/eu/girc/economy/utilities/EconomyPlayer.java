@@ -72,7 +72,7 @@ public class EconomyPlayer {
 		return balance;
 	}
 	
-	public void tranferMoney(EconomyPlayer target, long amount) {
+	public void transferMoney(EconomyPlayer target, long amount) {
 		this.balance -= amount;
 		target.balance += amount;
 		Config.setPlayerBalance(this);
@@ -98,6 +98,19 @@ public class EconomyPlayer {
 	
 	public ArrayList<EconomyLicense> getLicenses() {
 		return licenses;
+	}
+	
+	public static boolean playerExists(EconomyPlayer economyPlayer) {
+	    for (int i = 0; i < players.size(); i++) {
+		if (players.get(i).getUUID() == economyPlayer.getUUID()) {
+		    return true;
+		}
+	    }
+	    return false;
+	}
+	
+	public static void removePlayer(EconomyPlayer economyPlayer) {
+	    players.remove(economyPlayer);
 	}
 	
 	public static EconomyPlayer getPlayerByBucketPlayer(Player player) {
