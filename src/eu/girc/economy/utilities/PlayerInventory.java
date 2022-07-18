@@ -120,22 +120,22 @@ public class PlayerInventory implements Listener {
 	}
 	
 	@EventHandler
-	public static void onInventoryClicked(InventoryClickEvent event) {
-		try {
-			if(event.getCurrentItem() != null) {
-				for(PlayerInventory inventory : inventories) {
-					if (event.getClickedInventory() == inventory.inventory) {
-						if (inventory.actions.containsKey(event.getSlot())) inventory.actions.get(event.getSlot()).onAction(event);
-						if (inventory.isFixed()) event.setCancelled(true);
-						return;
-					} else if (inventory.isFixed() && event.getWhoClicked().getOpenInventory().getTopInventory() == inventory.inventory) {
-						event.setCancelled(true);
-						return;
-					}
-				}
-			}
-		} catch (ConcurrentModificationException exception) {}
-	}
+    public static void onInventoryClicked(InventoryClickEvent event) {
+        try {
+            if(event.getCurrentItem() != null) {
+                for(PlayerInventory inventory : inventories) {
+                    if (event.getClickedInventory().equals(inventory.inventory)) {
+                        if (inventory.actions.containsKey(event.getSlot())) inventory.actions.get(event.getSlot()).onAction(event);
+                        if (inventory.isFixed()) event.setCancelled(true);
+                        return;
+                    } else if (inventory.isFixed() && event.getWhoClicked().getOpenInventory().getTopInventory().equals(inventory.inventory)) {
+                        event.setCancelled(true);
+                        return;
+                    }
+                }
+            }
+        } catch (ConcurrentModificationException exception) {}
+    }
 	
 	@EventHandler
 	public static void onInventoryClosed(InventoryCloseEvent event) {
